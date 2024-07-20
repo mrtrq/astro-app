@@ -1,15 +1,19 @@
 ---
+import '../styles/global.css'
 const pageTitle = "About Me"
 const identity = {
     firstName: "Tarreq",
-    country: "IDN",
+    country: "Bandung, Indonesia 🇮🇩",
     occupation: "Explorer",
-    hobbies: ["read books", "running", "movies"]
+    hobbies: ["traveling", "running", "movies"]
 }
-const skills = ["Math","Python","Java","Writing Blogs"]
+const skills = ["Math","Writing Blogs", "Programming (Python & Java fan here!)"]
 const happy = true
 const finished = false
 const goal = 3
+const skillColor = "navy"
+const fontWeight = "bold"
+const textCase = "none"
 ---
 
 <html lang="en">
@@ -19,6 +23,18 @@ const goal = 3
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+        <style define:vars={{skillColor, fontWeight, textCase}}>
+            h1 {
+              color: purple;
+              font-size: 4rem;
+            }
+            .skill {
+              color: var(--skillColor);
+              font-weight: var(--fontWeight);
+              text-transform: var(--textCase);
+            }
+          </style>
+        </style>
 	</head>
     <body>
         <a href="/">Home</a>
@@ -38,13 +54,13 @@ const goal = 3
             <li>I live in {identity.country}</li>
             {
                 identity.hobbies.length >= 2 &&
-                <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+                <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[2]}</li>
             }
         </ul>
         <p>
             My skills are:
             <ul>
-                {skills.map((skills => <li>{skills}</li>))}
+                {skills.map((skill) => <li class="skill">{skill}</li>)}
             </ul>
 
             {happy && <p>I am happy to be learning Astro!</p>}
